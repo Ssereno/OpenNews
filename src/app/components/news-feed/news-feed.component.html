@@ -1,0 +1,18 @@
+<div class="header">
+    <h1>OpenNews</h1>
+    <button mat-button (click)="openSettings()">Settings</button>
+</div>
+
+<app-category-selector (categorySelected)="onCategoryParams($event)"></app-category-selector>
+
+<div class="news-grid">
+    <app-news-card *ngFor="let article of articles" [article]="article"></app-news-card>
+</div>
+
+<div class="spinner-container" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+</div>
+
+<div class="error-container" *ngIf="error">
+    <p>{{ error }}</p>
+</div>

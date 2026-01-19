@@ -1,0 +1,9 @@
+<div class="settings-container">
+    <h1>Settings</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>NewsAPI Key</mat-label>
+        <input matInput [(ngModel)]="apiKey" placeholder="Enter your API Key">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <p class="hint">Get your key at <a href="https://newsapi.org" target="_blank">newsapi.org</a></p>
+</div>
