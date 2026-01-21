@@ -4,9 +4,26 @@
     align-items: center;
     padding: 2rem;
 
-    mat-form-field {
+    h1 {
+        font-size: 20px;
+    }
+
+    .section {
         width: 100%;
         max-width: 400px;
+
+        h2 {
+            font-size: 16px;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    mat-form-field {
+        width: 100%;
+
+        ::ng-deep .mat-form-field-label {
+            font-size: 16px;
+        }
     }
 
     button {
@@ -14,7 +31,7 @@
     }
 
     .hint {
-        margin-top: 2rem;
+        margin-top: 1rem;
         color: #666;
     }
 }

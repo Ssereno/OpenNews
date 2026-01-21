@@ -3,7 +3,10 @@
     <button mat-button (click)="openSettings()">Settings</button>
 </div>
 
-<app-category-selector (categorySelected)="onCategoryParams($event)"></app-category-selector>
+<div class="filter-container">
+    <app-language-selector [selectedLanguage]="currentLanguage"
+        (languageSelected)="onLanguageSelected($event)"></app-language-selector>
+</div>
 
 <div class="news-grid">
     <app-news-card *ngFor="let article of articles" [article]="article"></app-news-card>

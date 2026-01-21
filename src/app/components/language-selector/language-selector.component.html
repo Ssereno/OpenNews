@@ -1,0 +1,6 @@
+<mat-chip-listbox aria-label="Language Selection">
+    <mat-chip-option *ngFor="let lang of languages" [selected]="selectedLanguage === lang.code"
+        (click)="selectLanguage(lang.code)" color="primary">
+        {{ lang.label }}
+    </mat-chip-option>
+</mat-chip-listbox>

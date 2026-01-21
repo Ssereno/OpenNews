@@ -11,13 +11,13 @@ export class NewsApiService {
 
     constructor(private http: HttpClient) { }
 
-    getArticles(page: number = 1, pageSize: number = 20, q: string = 'general', apiKey: string): Observable<NewsResponse> {
+    getArticles(page: number = 1, pageSize: number = 20, q: string = 'general', apiKey: string, language: string = 'en'): Observable<NewsResponse> {
         const params = new HttpParams()
             .set('q', q)
             .set('page', page.toString())
             .set('pageSize', pageSize.toString())
             .set('apiKey', apiKey)
-            .set('language', 'en')
+            .set('language', language)
             .set('sortBy', 'publishedAt');
 
         return this.http.get<NewsResponse>(this.apiUrl, { params });

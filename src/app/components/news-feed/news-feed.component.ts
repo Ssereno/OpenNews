@@ -5,13 +5,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NewsApiService } from '../../services/news-api.service';
 import { Article } from '../../models/article.model';
 import { NewsCardComponent } from '../news-card/news-card.component';
-import { CategorySelectorComponent } from '../category-selector/category-selector.component';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 
 @Component({
   selector: 'app-news-feed',
   standalone: true,
-  imports: [CommonModule, NewsCardComponent, CategorySelectorComponent, MatProgressSpinnerModule, MatButtonModule],
+  imports: [CommonModule, NewsCardComponent, MatProgressSpinnerModule, MatButtonModule, FormsModule, LanguageSelectorComponent],
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.scss']
 })
@@ -20,7 +21,7 @@ export class NewsFeedComponent implements OnInit {
   loading = false;
   error = '';
   page = 1;
-  currentCategory = 'general';
+  currentLanguage = 'en';
   apiKey = '';
 
   constructor(private newsService: NewsApiService, private router: Router) { }
@@ -31,13 +32,14 @@ export class NewsFeedComponent implements OnInit {
       this.router.navigate(['/settings']);
       return;
     }
+    this.currentLanguage = localStorage.getItem('newsLanguage') || 'en';
     this.loadNews();
   }
 
   loadNews() {
     if (this.loading) return;
     this.loading = true;
-    this.newsService.getArticles(this.page, 20, this.currentCategory, this.apiKey).subscribe({
+    this.newsService.getArticles(this.page, 20, 'general', this.apiKey, this.currentLanguage).subscribe({
       next: (response) => {
         this.articles = [...this.articles, ...response.articles];
         this.loading = false;
@@ -53,8 +55,8 @@ export class NewsFeedComponent implements OnInit {
     });
   }
 
-  onCategoryParams(category: string) {
-    this.currentCategory = category;
+  onLanguageSelected(language: string) {
+    this.currentLanguage = language;
     this.articles = [];
     this.page = 1;
     this.loadNews();
