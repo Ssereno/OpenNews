@@ -6,6 +6,7 @@
 <div class="filter-container">
     <app-language-selector [selectedLanguage]="currentLanguage"
         (languageSelected)="onLanguageSelected($event)"></app-language-selector>
+    <app-search-box (search)="onSearch($event)"></app-search-box>
 </div>
 
 <div class="news-grid">

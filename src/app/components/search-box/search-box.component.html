@@ -1,0 +1,17 @@
+<div class="search-container">
+    <button mat-icon-button
+        matTooltip="Surround phrases with quotes (&quot;) for exact match.
+Prepend words or phrases that must appear with a + symbol. Eg: +bitcoin
+Prepend words that must not appear with a - symbol. Eg: -bitcoin
+You can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin."
+        matTooltipClass="multiline-tooltip" aria-label="Search Help" [disableRipple]="true">
+        <mat-icon>help_outline</mat-icon>
+    </button>
+
+    <mat-form-field appearance="outline" subscriptSizing="dynamic" class="dense-form-field no-animation">
+        <input matInput type="text" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Search news">
+        <button mat-icon-button matSuffix (click)="onSearch()" aria-label="Search" [disableRipple]="true">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

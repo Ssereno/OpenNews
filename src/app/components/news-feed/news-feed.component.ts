@@ -8,11 +8,12 @@ import { NewsCardComponent } from '../news-card/news-card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
+import { SearchBoxComponent } from '../search-box/search-box.component';
 
 @Component({
   selector: 'app-news-feed',
   standalone: true,
-  imports: [CommonModule, NewsCardComponent, MatProgressSpinnerModule, MatButtonModule, FormsModule, LanguageSelectorComponent],
+  imports: [CommonModule, NewsCardComponent, MatProgressSpinnerModule, MatButtonModule, FormsModule, LanguageSelectorComponent, SearchBoxComponent],
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.scss']
 })
@@ -23,6 +24,7 @@ export class NewsFeedComponent implements OnInit {
   page = 1;
   currentLanguage = 'en';
   apiKey = '';
+  currentSearchQuery = 'general';
 
   constructor(private newsService: NewsApiService, private router: Router) { }
 
@@ -39,7 +41,7 @@ export class NewsFeedComponent implements OnInit {
   loadNews() {
     if (this.loading) return;
     this.loading = true;
-    this.newsService.getArticles(this.page, 20, 'general', this.apiKey, this.currentLanguage).subscribe({
+    this.newsService.getArticles(this.page, 20, this.currentSearchQuery, this.apiKey, this.currentLanguage).subscribe({
       next: (response) => {
         this.articles = [...this.articles, ...response.articles];
         this.loading = false;
@@ -57,6 +59,13 @@ export class NewsFeedComponent implements OnInit {
 
   onLanguageSelected(language: string) {
     this.currentLanguage = language;
+    this.articles = [];
+    this.page = 1;
+    this.loadNews();
+  }
+
+  onSearch(query: string) {
+    this.currentSearchQuery = query || 'general';
     this.articles = [];
     this.page = 1;
     this.loadNews();
