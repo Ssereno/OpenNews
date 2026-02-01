@@ -9,11 +9,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 import { SearchBoxComponent } from '../search-box/search-box.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-news-feed',
   standalone: true,
-  imports: [CommonModule, NewsCardComponent, MatProgressSpinnerModule, MatButtonModule, FormsModule, LanguageSelectorComponent, SearchBoxComponent],
+  imports: [CommonModule, NewsCardComponent, MatProgressSpinnerModule, MatButtonModule, FormsModule, LanguageSelectorComponent, SearchBoxComponent, MatIconModule, MatSlideToggleModule],
   templateUrl: './news-feed.component.html',
   styleUrls: ['./news-feed.component.scss']
 })
@@ -26,7 +29,7 @@ export class NewsFeedComponent implements OnInit {
   apiKey = '';
   currentSearchQuery = 'general';
 
-  constructor(private newsService: NewsApiService, private router: Router) { }
+  constructor(private newsService: NewsApiService, private router: Router, public themeService: ThemeService) { }
 
   ngOnInit() {
     this.apiKey = localStorage.getItem('newsApiKey') || '';

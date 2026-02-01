@@ -3,6 +3,20 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+
+    mat-card-header {
+
+        ::ng-deep .mat-mdc-card-title,
+        ::ng-deep .mat-mdc-card-subtitle,
+        .mat-card-title,
+        .mat-card-subtitle,
+        mat-card-title,
+        mat-card-subtitle {
+            color: var(--text-color) !important;
+        }
+    }
 
     mat-card-content {
         margin-top: 1rem;

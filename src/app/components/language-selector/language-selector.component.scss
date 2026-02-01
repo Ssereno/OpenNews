@@ -7,4 +7,8 @@ mat-chip-option {
     font-size: 12px;
     min-height: 24px;
     /* Optional: compact chips */
+
+    // Ensure chips are visible on dark background
+    --mdc-chip-elevated-container-color: var(--input-bg);
+    --mdc-chip-label-text-color: var(--text-color);
 }

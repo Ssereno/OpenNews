@@ -1,6 +1,14 @@
 <div class="header">
-    <h1>OpenNews</h1>
-    <button mat-button (click)="openSettings()">Settings</button>
+    <h1>Open News Reader</h1>
+    <div class="header-controls">
+        <div class="theme-toggle">
+            <mat-icon class="icon-sun">wb_sunny</mat-icon>
+            <mat-slide-toggle [checked]="(themeService.activeTheme$ | async) === 'dark'"
+                (change)="themeService.toggleTheme()"></mat-slide-toggle>
+            <mat-icon class="icon-moon">brightness_3</mat-icon>
+        </div>
+        <button mat-button (click)="openSettings()">Settings</button>
+    </div>
 </div>
 
 <div class="filter-container">

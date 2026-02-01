@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchBoxComponent } from './search-box.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SearchBoxComponent', () => {
   let component: SearchBoxComponent;
@@ -8,10 +8,10 @@ describe('SearchBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchBoxComponent]
+      imports: [SearchBoxComponent, BrowserAnimationsModule]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(SearchBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
