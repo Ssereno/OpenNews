@@ -2,6 +2,8 @@
 
 This project is a web application developed in Angular that consumes the **NewsAPI** to display news in real time. The main goal is to provide a simple, modern, and responsive interface for browsing and reading news articles from different sources.
 
+It was created entirely with AI with the goal of testing the specification-driven development approach with **OpenSpec** `https://github.com/Fission-AI/OpenSpec`
+
 The application allows users to navigate through recent news, view article details, and explore content organized by categories or topics, making use of the data provided by the NewsAPI.
 
 ## Features
@@ -21,9 +23,6 @@ Ability to filter or search for news (if applicable to your project)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -36,7 +35,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

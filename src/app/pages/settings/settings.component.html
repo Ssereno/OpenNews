@@ -19,6 +19,10 @@
                 <option value="es">Spanish (es)</option>
             </select>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Requests Today</mat-label>
+            <input matInput [value]="dailyRequests" readonly>
+        </mat-form-field>
     </div>
 
     <button mat-raised-button color="primary" (click)="save()">Save</button>
