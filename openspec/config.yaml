@@ -1,20 +1,16 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Tech Stack:Angular 17, TypeScript, Bootstrap,Angular Material for UI
+  Constraints: Browser-only, localStorage for user preferences, Responsive design
+  Code Conventions: Always use types; avoid `any`, Angular for all UI, Angular Material + Bootstrap 
+  Naming: kebab-case files/folders, PascalCase classes, camelCase method params/locals, PascalCase constants
+  Testing: E2E tests
+  NewsAPI: https://newsapi.org/docs (authentication, everything, top-headlines, sources endpoints)
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Reference existing patterns before inventing new ones
