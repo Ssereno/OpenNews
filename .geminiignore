@@ -2,10 +2,17 @@
 node_modules/
 dist/
 /packages/
+.next/
+build/
+out/
+.angular/
+
 
 # Ignorar ficheiros específicos
 package-lock.json
 package.json
+.editorconfig
+.gitignore
 
 # Wildcards
 *.tmp
@@ -13,3 +20,31 @@ package.json
 *.log
 *.env
 *.txt
+
+#IDE
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Caches e ficheiros de testes gerados
+.cache/
+coverage/
+.angular/cache/
+
+# Outros lockfiles
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Git e CI/CD (se não precisares de ajuda com as actions)
+.git/
+.github/
+
+# Imagens genéricas e assets (ajusta conforme a estrutura do teu Angular)
+src/assets/**/*.svg
+src/assets/**/*.png
+src/assets/**/*.jpg
+src/assets/**/*.jpeg
+src/assets/**/*.gif
+src/assets/**/*.ico
+src/assets/fonts/

@@ -27,3 +27,39 @@
         height: 200px;
     }
 }
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.favorite-icon-bottom {
+    cursor: pointer;
+    color: rgba(128, 128, 128, 0.4);
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    outline: none;
+    transition: color 0.25s ease, transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.2);
+        color: #ffd54f;
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &.active {
+        color: #ffc107;
+
+        &:hover {
+            color: #ffab00;
+        }
+    }
+}

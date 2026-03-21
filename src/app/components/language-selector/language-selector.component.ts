@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class LanguageSelectorComponent {
   @Input() selectedLanguage = 'en';
+  @Input() disabled = false;
   @Output() languageSelected = new EventEmitter<string>();
 
   languages = [

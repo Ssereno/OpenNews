@@ -12,6 +12,7 @@ import { SearchBoxComponent } from '../search-box/search-box.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ThemeService } from '../../services/theme.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -28,8 +29,14 @@ export class NewsFeedComponent implements OnInit {
   currentLanguage = 'en';
   apiKey = '';
   currentSearchQuery = 'general';
+  showFavoritesOnly = localStorage.getItem('showFavoritesOnly') === 'true';
 
-  constructor(private newsService: NewsApiService, private router: Router, public themeService: ThemeService) { }
+  constructor(
+    private newsService: NewsApiService, 
+    private router: Router, 
+    public themeService: ThemeService,
+    public favoritesService: FavoritesService
+  ) { }
 
   ngOnInit() {
     this.apiKey = localStorage.getItem('newsApiKey') || '';
@@ -38,11 +45,14 @@ export class NewsFeedComponent implements OnInit {
       return;
     }
     this.currentLanguage = localStorage.getItem('newsLanguage') || 'en';
-    this.loadNews();
+    if (!this.showFavoritesOnly) {
+      this.loadNews();
+    }
   }
 
   loadNews() {
     if (this.loading) return;
+    if (this.showFavoritesOnly) return;
     this.loading = true;
     this.newsService.getArticles(this.page, 20, this.currentSearchQuery, this.apiKey, this.currentLanguage).subscribe({
       next: (response) => {
@@ -76,7 +86,23 @@ export class NewsFeedComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (this.showFavoritesOnly) return;
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+      this.loadNews();
+    }
+  }
+
+  get filteredArticles(): Article[] {
+    if (!this.showFavoritesOnly) {
+      return this.articles;
+    }
+    return this.favoritesService.getAllFavorites();
+  }
+
+  onShowFavoritesChange(checked: boolean) {
+    this.showFavoritesOnly = checked;
+    localStorage.setItem('showFavoritesOnly', String(checked));
+    if (!checked && this.articles.length === 0) {
       this.loadNews();
     }
   }

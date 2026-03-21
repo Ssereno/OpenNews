@@ -12,13 +12,21 @@
 </div>
 
 <div class="filter-container">
-    <app-language-selector [selectedLanguage]="currentLanguage"
-        (languageSelected)="onLanguageSelected($event)"></app-language-selector>
+    <div class="filter-left">
+        <app-language-selector [selectedLanguage]="currentLanguage" [disabled]="showFavoritesOnly"
+            (languageSelected)="onLanguageSelected($event)"></app-language-selector>
+        <mat-slide-toggle [ngModel]="showFavoritesOnly" (ngModelChange)="onShowFavoritesChange($event)">Show Favorites</mat-slide-toggle>
+    </div>
     <app-search-box (search)="onSearch($event)"></app-search-box>
 </div>
 
 <div class="news-grid">
-    <app-news-card *ngFor="let article of articles" [article]="article"></app-news-card>
+    <app-news-card *ngFor="let article of filteredArticles" [article]="article"></app-news-card>
+</div>
+
+<div class="empty-favorites" *ngIf="showFavoritesOnly && filteredArticles.length === 0">
+    <mat-icon>star_outline</mat-icon>
+    <p>You haven't saved any favorites yet.</p>
 </div>
 
 <div class="spinner-container" *ngIf="loading">
